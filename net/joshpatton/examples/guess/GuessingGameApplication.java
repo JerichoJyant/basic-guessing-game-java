@@ -15,7 +15,7 @@ public class GuessingGameApplication {
         playOneGame();
     }
 
-    public static playOneGame() {
+    public static void playOneGame() {
         System.out.println("Guess a number 1 - 10");
         System.out.println("Input 'quit' to exit game");
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +26,9 @@ public class GuessingGameApplication {
             String input = scanner.nextLine().trim();
             try {
                 int guess = Integer.parseInt(input);
-                engine.inputAndGuess(guess);
+                if(!engine.inputAndGuess(guess)) {
+                    System.out.println("Incorrect guess");
+                }
             } catch (NumberFormatException e) {
                 System.out.println("That is not a number. Ending game");
                 userQuitGame();
@@ -42,7 +44,7 @@ public class GuessingGameApplication {
         
     }
 
-    public static userQuitGame() {
+    public static void userQuitGame() {
         //TODO: show stats
         System.out.println("Goodbye");
         System.exit(0);

@@ -1,5 +1,3 @@
-import java.security.InvalidParameterException;
-
 /*
  * This is the first thing I create when learning a new language.
  * I repurpose it now for demonstrating my knowledge
@@ -7,7 +5,7 @@ import java.security.InvalidParameterException;
  */
 package net.joshpatton.examples.guess;
 
-import java.util.steam.IntStream;
+import java.util.stream.IntStream;
 import java.util.Random;
 
 public class GuessingGameEngine {
@@ -41,12 +39,10 @@ public class GuessingGameEngine {
         this.targetNumber = randomIntStream.findFirst().getAsInt();
     }
 
-    public void inputAndGuess(int guess) throws IllegalArgumentException, IllegalAccessException {
-        if(gameOver) {
-            throw IllegalAccessException("Game is already over");
-        }
+    public boolean inputAndGuess(int guess) throws IllegalArgumentException {
+        if(gameOver) return false;
         if(!isInputValid(guess)) {
-            throw IllegalArgumentException("Guess is invalid");
+            throw new IllegalArgumentException("Guess is invalid");
         }
 
         guessesMade++;
@@ -77,7 +73,7 @@ public class GuessingGameEngine {
         return this.gameWon;
     }
 
-    public boolean getGuessesMade() {
+    public int getGuessesMade() {
         return this.guessesMade;
     }
 
