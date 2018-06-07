@@ -29,12 +29,21 @@ public class GuessingGameApplication {
 
     public static void playOneGame() {
         System.out.println("\n*Beginning new game*\n");
+
+        System.out.print("What number do you want to guess up to: ");
+
+        int max = GuessingGameEngine.DEFAULT_MAXIMUM_NUMBER;
+        try {
+            max = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("That is not a number. Ending game");
+            quitApplication();
+        }
+
         System.out.println("Guess a number 1 - 10");
         System.out.println("Input 'quit' to exit game");
-
         
-        
-        GuessingGameEngine engine = new GuessingGameEngine();
+        GuessingGameEngine engine = new GuessingGameEngine(max);
 
         while(!engine.isGameOver()) {
             System.out.print("1 - 10: ");

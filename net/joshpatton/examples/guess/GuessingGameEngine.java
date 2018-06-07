@@ -10,9 +10,9 @@ import java.util.Random;
 
 public class GuessingGameEngine {
     // constants
-    final public int MINIMUM_NUMBER = 1;
-    final public int DEFAULT_MAXIMUM_NUMBER = 10;
-    final public int DEFAULT_MAXIMUM_GUESSES = 5;
+    final public static int MINIMUM_NUMBER = 1;
+    final public static int DEFAULT_MAXIMUM_NUMBER = 10;
+    final public static int DEFAULT_MAXIMUM_GUESSES = 5;
     // properties for the number to guess
     private int targetNumber = 0; // Cannot be guessed (intitalization to 0 is redundant but clarifies)
     private int maximumNumber = DEFAULT_MAXIMUM_NUMBER;
