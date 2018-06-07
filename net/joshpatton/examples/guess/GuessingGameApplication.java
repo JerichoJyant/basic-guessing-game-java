@@ -38,8 +38,9 @@ public class GuessingGameApplication {
         try {
             String input = scanner.nextLine();
             max = Integer.parseInt(input);
+            if(max <= 0) throw new NumberFormatException("Non-positive number input");
         } catch (NumberFormatException e) {
-            System.out.println("That is not a number. Ending game");
+            System.out.println("That is not a properly formatted acceptable number. Ending game");
             quitApplication();
         }
         GuessingGameEngine engine = new GuessingGameEngine(max);
@@ -59,7 +60,7 @@ public class GuessingGameApplication {
                 if(!engine.inputAndGuess(guess)) {
                     System.out.println("Incorrect guess");
                 }
-            } catch (NumberFormatException e) {
+            } catch (IllegalArgumentException e) { // catches subclass NumberFormatException for parseInt as well as inputAndGuess's exception
                 System.out.println("That is not a number. Ending game");
                 quitApplication();
             }
