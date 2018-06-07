@@ -32,7 +32,7 @@ public class GuessingGameApplication {
         System.out.println("\n*Beginning new game*\n");
 
         // Determine max guess
-        // TODO: This would really be better as a helper function, as it's repeated below;
+        // TODO: This would really be better as a helper function, as it's repeated below
         System.out.print("What number do you want to guess up to? ");
         int max = GuessingGameEngine.DEFAULT_MAXIMUM_NUMBER;
         try {

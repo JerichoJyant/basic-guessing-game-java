@@ -27,8 +27,9 @@ public class GuessingGameEngine {
         generateAndSetTargetNumber();
     }
 
-    public GuessingGameEngine(int targetNumber) {
-        this.targetNumber = targetNumber;
+    public GuessingGameEngine(int maximumNumber) {
+        this.maximumNumber = maximumNumber;
+        generateAndSetTargetNumber();
     }
     
     private void generateAndSetTargetNumber() {
