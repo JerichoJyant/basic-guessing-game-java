@@ -28,8 +28,9 @@ public class GuessingGameEngine {
     }
 
     public GuessingGameEngine(int maximumNumber) {
+        this();
+        
         this.maximumNumber = maximumNumber;
-        generateAndSetTargetNumber();
     }
     
     private void generateAndSetTargetNumber() {

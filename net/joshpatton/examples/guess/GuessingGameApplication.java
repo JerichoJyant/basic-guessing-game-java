@@ -61,7 +61,7 @@ public class GuessingGameApplication {
                     System.out.println("Incorrect guess");
                 }
             } catch (IllegalArgumentException e) { // catches subclass NumberFormatException for parseInt as well as inputAndGuess's exception
-                System.out.println("That is not a number. Ending game");
+                System.out.println("That is not a properly formatted acceptable number. Ending game");
                 quitApplication();
             }
         }
