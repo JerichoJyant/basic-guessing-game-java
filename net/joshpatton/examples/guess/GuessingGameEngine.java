@@ -5,45 +5,83 @@ import java.security.InvalidParameterException;
  * I repurpose it now for demonstrating my knowledge
  * created at 4:30pm June 7th, 2018 by Josh Patton
  */
+package net.joshpatton.examples.guess;
+
+import java.util.steam.IntStream;
+import java.util.Random;
 
 public class GuessingGameEngine {
     // constants
     final public int MINIMUM_NUMBER = 1;
     final public int DEFAULT_MAXIMUM_NUMBER = 10;
-    // properites
-    private int targetNumber = 0; // Can not be guessed (intitalization to 0 is redundant but clarifies)
+    final public int DEFAULT_MAXIMUM_GUESSES = 5;
+    // properties for the number to guess
+    private int targetNumber = 0; // Cannot be guessed (intitalization to 0 is redundant but clarifies)
     private int maximumNumber = DEFAULT_MAXIMUM_NUMBER;
+    // game state
     private boolean gameWon = false;
+    private boolean gameOver = false;
+    private int guessesMade = 0;
+    private int maximumGuesses = DEFAULT_MAXIMUM_GUESSES;
+    
 
     public GuessingGameEngine() {
         generateAndSetTargetNumber();
     }
 
     public GuessingGameEngine(int targetNumber) {
-
+        this.targetNumber = targetNumber;
     }
     
-    private int generateAndSetTargetNumber() {
+    private void generateAndSetTargetNumber() {
         // TODO: consider making randomIntStream static for performance
         // Stacking the Random object and the ints call is not pretty but it makes converting to static simpler
         IntStream randomIntStream = (new Random()).ints(MINIMUM_NUMBER, (maximumNumber + 1));
 
-        return randomIntStream.findFirst().getAsInt();
+        this.targetNumber = randomIntStream.findFirst().getAsInt();
     }
 
-    public boolean inputAndGuess(int guess) {
+    public void inputAndGuess(int guess) throws IllegalArgumentException, IllegalAccessException {
+        if(gameOver) {
+            throw IllegalAccessException("Game is already over");
+        }
         if(!isInputValid(guess)) {
             throw IllegalArgumentException("Guess is invalid");
         }
+
+        guessesMade++;
+        
         if(guess == targetNumber) {
             gameWon = true;
+            gameOver = true;
             return true;
-        } else { // else not necessary. kept for style
+        } else {
+            if(guessesMade >= maximumGuesses) { // use greater than equal to instead of equal to as backup
+                gameOver = true;
+            }
             return false;
         }
     }
 
     private boolean isInputValid(int guess) {
         return guess >= MINIMUM_NUMBER && guess <= maximumNumber;
+    }
+
+    // GETTERS / SETTERS
+
+    public boolean isGameOver() {
+        return this.gameOver;
+    }
+
+    public boolean isGameWon() {
+        return this.gameWon;
+    }
+
+    public boolean getGuessesMade() {
+        return this.guessesMade;
+    }
+
+    public int getTargetNumber() {
+        return this.targetNumber;
     }
 }
